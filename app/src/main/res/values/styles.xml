@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme" parent="Theme.Wearable">
+        <item name="android:colorPrimary">@color/colorPrimary</item>
+        <item name="android:colorSecondary">#bf360c</item>
+        <item name="android:colorAccent">#42a5f5</item>
+    </style>
+
+    <style name="SelectableItemBackground">
+        <item name="android:theme">@style/SelectableItemTheme</item>
+        <item name="android:background">?android:attr/selectableItemBackground</item>
+    </style>
+
+    <style name="SelectableItemTheme">
+        <item name="android:colorControlHighlight">@color/colorPrimary</item>
+    </style>
+</resources>
