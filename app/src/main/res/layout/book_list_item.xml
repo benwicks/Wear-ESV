@@ -7,7 +7,7 @@
     android:ellipsize="end"
     android:maxLines="1"
     android:paddingStart="8dp"
-    android:paddingTop="6dp"
+    android:paddingTop="2dp"
     android:paddingEnd="8dp"
-    android:paddingBottom="6dp"
+    android:paddingBottom="2dp"
     android:textSize="22sp" />
