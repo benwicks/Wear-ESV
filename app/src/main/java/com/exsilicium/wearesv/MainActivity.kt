@@ -10,6 +10,7 @@ import androidx.wear.widget.WearableLinearLayoutManager
 import androidx.wear.widget.WearableRecyclerView
 import com.exsilicium.scripture.shared.model.Book
 import com.exsilicium.wearesv.book.BookViewHolder
+import com.exsilicium.wearesv.list.CustomScrollingLayoutCallback
 
 class MainActivity : WearableActivity() {
 
@@ -23,12 +24,17 @@ class MainActivity : WearableActivity() {
         findViewById<WearableRecyclerView>(R.id.recycler_view).apply {
             isEdgeItemsCenteringEnabled = true
 
-            layoutManager = WearableLinearLayoutManager(this@MainActivity)
+            layoutManager = WearableLinearLayoutManager(
+                this@MainActivity,
+                CustomScrollingLayoutCallback()
+            )
 
             adapter = object : RecyclerView.Adapter<BookViewHolder>() {
                 override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BookViewHolder {
-                    return BookViewHolder(LayoutInflater.from(parent.context)
-                        .inflate(R.layout.book_list_item, parent, false))
+                    return BookViewHolder(
+                        LayoutInflater.from(parent.context)
+                            .inflate(R.layout.book_list_item, parent, false)
+                    )
                 }
 
                 override fun getItemCount() = Book.values().size
