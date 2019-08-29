@@ -1,16 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".scripture.ScriptureFragment">
 
-    <!-- TODO: Update blank fragment layout -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ViewFlipper
+            android:id="@+id/view_flipper"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center">
+
+            <ProgressBar
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center" />
+
+            <TextView
+                android:id="@+id/tv_passage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:padding="8dp"
+                android:paddingTop="16dp"
+                android:textAlignment="center"
+                tools:text="For God so loved the world, that he gave his only Son, that whoever believes in him should not perish but have eternal life." />
+        </ViewFlipper>
+    </ScrollView>
+
     <TextView
         android:id="@+id/tv_verse_reference"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:gravity="center"
+        android:background="@drawable/gradient_grey"
+        android:ellipsize="end"
+        android:gravity="top"
+        android:maxLines="1"
+        android:paddingStart="15dp"
+        android:paddingTop="4dp"
+        android:paddingEnd="15dp"
+        android:paddingBottom="4dp"
+        android:textAlignment="center"
+        android:textSize="16sp"
         tools:text="John 3:16" />
 </FrameLayout>

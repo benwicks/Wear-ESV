@@ -3,7 +3,7 @@
     <style name="Theme" parent="Theme.Wearable">
         <item name="android:colorPrimary">@color/colorPrimary</item>
         <item name="android:colorSecondary">#bf360c</item>
-        <item name="android:colorAccent">#42a5f5</item>
+        <item name="android:colorAccent">#efd300</item>
     </style>
 
     <style name="SelectableItemBackground">

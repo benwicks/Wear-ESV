@@ -1,6 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
 apply plugin: "androidx.navigation.safeargs.kotlin"
 
 android {
@@ -30,10 +31,23 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+
+    def keystorePropertiesFile = rootProject.file("keystore.properties")
+    def apiKey = "\"Your API Key here\""
+    try {
+        def keystoreProperties = new Properties()
+        keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+        apiKey = keystoreProperties['esvApiKey']
+    } catch (FileNotFoundException ignored) {
+    }
+    buildTypes.each {
+        it.buildConfigField 'String', 'ESV_API_KEY', apiKey
+    }
 }
 
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion"
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.1.1'
 
     implementation 'com.google.android.gms:play-services-wearable:17.0.0'
     implementation 'com.google.android.support:wearable:2.5.0'
@@ -43,6 +57,10 @@ dependencies {
     implementation 'androidx.wear:wear:1.0.0'
 
     implementation 'com.exsilicium.scripture:scripture-core:0.1.2'
+    implementation "com.squareup.retrofit2:converter-moshi:$retrofitVersion"
+    implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
 
     compileOnly 'com.google.android.wearable:wearable:2.5.0'
+
+    kapt "com.squareup.moshi:moshi-kotlin-codegen:$moshiVersion"
 }
