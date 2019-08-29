@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <TextView
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     style="@style/SelectableItemBackground"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:ellipsize="end"
-    android:maxLines="1"
-    android:paddingStart="8dp"
-    android:paddingTop="2dp"
-    android:paddingEnd="8dp"
-    android:paddingBottom="2dp"
-    android:textSize="22sp" />
+    android:layout_gravity="center"
+    android:gravity="center"
+    android:textSize="@dimen/text_size_list_item_number"
+    tools:text="@sample/numbers.json/numbers/number" />

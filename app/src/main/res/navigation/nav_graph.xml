@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/bookListFragment">
+
+    <fragment
+        android:id="@+id/bookListFragment"
+        android:name="com.exsilicium.wearesv.list.book.BookListFragment"
+        android:label="fragment_book_list"
+        tools:layout="@layout/fragment_book_list" >
+        <action
+            android:id="@+id/action_bookListFragment_to_chapterListFragment"
+            app:destination="@id/chapterListFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim"
+            app:popUpTo="@+id/bookListFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/chapterListFragment"
+        android:name="com.exsilicium.wearesv.list.chapter.ChapterListFragment"
+        android:label="fragment_chapter_list"
+        tools:layout="@layout/fragment_chapter_or_verse_list" >
+        <argument
+            android:name="book"
+            app:argType="com.exsilicium.scripture.shared.model.Book" />
+        <action
+            android:id="@+id/action_chapterListFragment_to_verseListFragment"
+            app:destination="@id/verseListFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim"
+            app:popUpTo="@+id/chapterListFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/verseListFragment"
+        android:name="com.exsilicium.wearesv.list.verse.VerseListFragment"
+        android:label="fragment_verse_list"
+        tools:layout="@layout/fragment_chapter_or_verse_list" >
+        <argument
+            android:name="book"
+            app:argType="com.exsilicium.scripture.shared.model.Book" />
+        <argument
+            android:name="chapter"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_verseListFragment_to_verseFragment"
+            app:destination="@id/verseFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim"
+            app:popUpTo="@+id/verseListFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/verseFragment"
+        android:name="com.exsilicium.wearesv.scripture.ScriptureFragment"
+        android:label="fragment_verse"
+        tools:layout="@layout/fragment_scripture" >
+        <argument
+            android:name="book"
+            app:argType="com.exsilicium.scripture.shared.model.Book" />
+        <argument
+            android:name="chapter"
+            app:argType="integer" />
+        <argument
+            android:name="verse"
+            app:argType="integer" />
+    </fragment>
+</navigation>
