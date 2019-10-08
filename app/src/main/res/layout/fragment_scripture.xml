@@ -25,7 +25,7 @@
                 android:id="@+id/tv_passage"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
+                android:layout_gravity="center_horizontal"
                 android:padding="8dp"
                 android:paddingTop="16dp"
                 android:textAlignment="center"
@@ -39,13 +39,12 @@
         android:layout_height="wrap_content"
         android:background="@drawable/gradient_grey"
         android:ellipsize="end"
-        android:gravity="top"
+        android:gravity="center_horizontal"
         android:maxLines="1"
         android:paddingStart="15dp"
         android:paddingTop="4dp"
         android:paddingEnd="15dp"
         android:paddingBottom="4dp"
-        android:textAlignment="center"
         android:textSize="16sp"
         tools:text="John 3:16" />
 </FrameLayout>

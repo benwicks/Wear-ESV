@@ -24,6 +24,7 @@ class BookListFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        // TODO Use new view binding
         recyclerView = view.findViewById<RecyclerView>(R.id.recycler_view).apply {
             adapter = BookListAdapter()
             if (viewModel.shouldRestore()) {
