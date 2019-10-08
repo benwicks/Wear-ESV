@@ -1,19 +1,15 @@
 language: android
 dist: trusty
+
 android:
   components:
-     - tools
      - platform-tools
+     - tools
+     - build-tools-26.0.2
+     - android-29
+     # Additional components
+     - extra-google-google_play_services
+     - extra-google-m2repository
+     - extra-android-m2repository
 
-    # The BuildTools version used by your project
-    - build-tools-26.0.2
-
-    # The SDK version used to compile your project
-    - android-29
-
-    # Additional components
-    - extra-google-google_play_services
-    - extra-google-m2repository
-    - extra-android-m2repository
-
-script: ./gradlew build connectedCheck
+script: ./gradlew clean build connectedCheck
