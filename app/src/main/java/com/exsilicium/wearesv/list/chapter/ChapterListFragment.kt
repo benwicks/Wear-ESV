@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -13,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.wear.widget.SwipeDismissFrameLayout
 import com.exsilicium.wearesv.R
+import com.exsilicium.wearesv.databinding.FragmentChapterOrVerseListBinding
 import com.exsilicium.wearesv.list.ScrollPositionViewModel
 import com.exsilicium.wearesv.list.chapter.ChapterListFragmentDirections.Companion.actionChapterListFragmentToVerseListFragment
 import com.exsilicium.wearesv.list.number.NumberListAdapter
@@ -38,10 +38,11 @@ class ChapterListFragment : Fragment() {
 
         val book = args.book
 
-        view.findViewById<TextView>(R.id.tv_select_label_header).setText(R.string.select_chapter)
-        view.findViewById<TextView>(R.id.tv_selection_header).text = book.title
+        val binding = FragmentChapterOrVerseListBinding.bind(view)
+        binding.headerLabel.setText(R.string.select_chapter)
+        binding.selectionHeader.text = book.title
 
-        recyclerView = view.findViewById<RecyclerView>(R.id.recycler_view).apply {
+        recyclerView = binding.recyclerView.apply {
             adapter = NumberListAdapter(book.chapterCount) {
                 findNavController().navigate(actionChapterListFragmentToVerseListFragment(book, it))
             }

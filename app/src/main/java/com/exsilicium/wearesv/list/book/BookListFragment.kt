@@ -9,6 +9,7 @@ import androidx.navigation.navGraphViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.exsilicium.wearesv.R
+import com.exsilicium.wearesv.databinding.FragmentBookListBinding
 import com.exsilicium.wearesv.list.ScrollPositionViewModel
 
 class BookListFragment : Fragment() {
@@ -24,8 +25,7 @@ class BookListFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        // TODO Use new view binding
-        recyclerView = view.findViewById<RecyclerView>(R.id.recycler_view).apply {
+        recyclerView = FragmentBookListBinding.bind(view).recyclerView.apply {
             adapter = BookListAdapter()
             if (viewModel.shouldRestore()) {
                 post {

@@ -8,13 +8,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
-import android.widget.ViewAnimator
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
 import androidx.wear.widget.SwipeDismissFrameLayout
 import com.exsilicium.scripture.shared.model.ScriptureReference
 import com.exsilicium.scripture.shared.model.Verse
 import com.exsilicium.wearesv.R
+import com.exsilicium.wearesv.databinding.FragmentScriptureBinding
 import com.exsilicium.wearesv.list.number.SwipeToPopBackStackCallback
 import com.exsilicium.wearesv.scripture.network.RetrofitFactory
 import kotlinx.coroutines.CoroutineScope
@@ -46,9 +46,10 @@ class ScriptureFragment : Fragment() {
             args.book,
             Verse(args.chapter, args.verse)
         )
-        view.findViewById<TextView>(R.id.tv_verse_reference).text = scriptureReference.toString()
 
-        val viewFlipper = view.findViewById<ViewAnimator>(R.id.view_flipper)
+        val binding = FragmentScriptureBinding.bind(view)
+
+        binding.scriptureReference.text = scriptureReference.toString()
 
         CoroutineScope(Dispatchers.IO).launch {
             val response = RetrofitFactory.makePassageService().getPassage(scriptureReference)
@@ -63,7 +64,7 @@ class ScriptureFragment : Fragment() {
                         passageTextView.text = "Error: ${response.code()}"
                         passageTextView.setTextColor(Color.RED)
                     }
-                    viewFlipper.displayedChild = 1
+                    binding.viewFlipper.displayedChild = 1
                 } catch (e: HttpException) {
                     Toast.makeText(context, "Exception ${e.message}", Toast.LENGTH_SHORT).show()
                 }
