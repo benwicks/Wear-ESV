@@ -23,7 +23,7 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/tv_select_label_header"
+            android:id="@+id/header_label"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingTop="4dp"
@@ -32,7 +32,7 @@
             tools:text="@string/select_chapter" />
 
         <TextView
-            android:id="@+id/tv_selection_header"
+            android:id="@+id/selection_header"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ellipsize="end"

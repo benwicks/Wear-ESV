@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -14,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.wear.widget.SwipeDismissFrameLayout
 import com.exsilicium.wearesv.R
+import com.exsilicium.wearesv.databinding.FragmentChapterOrVerseListBinding
 import com.exsilicium.wearesv.list.ScrollPositionViewModel
 import com.exsilicium.wearesv.list.number.NumberListAdapter
 import com.exsilicium.wearesv.list.number.SwipeToPopBackStackCallback
@@ -29,7 +29,7 @@ class VerseListFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? = SwipeDismissFrameLayout(activity).apply {
+    ): View = SwipeDismissFrameLayout(activity).apply {
         inflater.inflate(R.layout.fragment_chapter_or_verse_list, container, false).also(::addView)
         addCallback(SwipeToPopBackStackCallback())
     }
@@ -40,11 +40,13 @@ class VerseListFragment : Fragment() {
         val book = args.book
         val chapter = args.chapter
 
-        view.findViewById<TextView>(R.id.tv_select_label_header).setText(R.string.select_verse)
-        @SuppressLint("SetTextI18n")
-        view.findViewById<TextView>(R.id.tv_selection_header).text = "${book.title} $chapter"
+        val binding = FragmentChapterOrVerseListBinding.bind(view)
 
-        recyclerView = view.findViewById<RecyclerView>(R.id.recycler_view).apply {
+        binding.headerLabel.setText(R.string.select_verse)
+        @SuppressLint("SetTextI18n")
+        binding.selectionHeader.text = "${book.title} $chapter"
+
+        recyclerView = binding.recyclerView.apply {
             adapter = NumberListAdapter(book.versesInChapter(chapter)) {
                 findNavController().navigate(
                     actionVerseListFragmentToVerseFragment(book, chapter, it)
