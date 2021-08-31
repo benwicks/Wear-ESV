@@ -28,7 +28,7 @@ class ChapterListFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? = SwipeDismissFrameLayout(activity).apply {
+    ): View = SwipeDismissFrameLayout(activity).apply {
         inflater.inflate(R.layout.fragment_chapter_or_verse_list, container, false).also(::addView)
         addCallback(SwipeToPopBackStackCallback())
     }

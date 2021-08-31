@@ -30,12 +30,12 @@ class ScriptureFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? = SwipeDismissFrameLayout(activity).apply {
+    ): View = SwipeDismissFrameLayout(activity).apply {
         inflater.inflate(R.layout.fragment_scripture, container, false).also(::addView)
         addCallback(SwipeToPopBackStackCallback())
     }
 
-    /* TODO Clean up. See:
+    /* TODO Clean up. Use ViewModel pattern? See:
             - https://proandroiddev.com/suspend-what-youre-doing-retrofit-has-now-coroutines-support-c65bd09ba067
             - https://android.jlelse.eu/kotlin-coroutines-and-retrofit-e0702d0b8e8f
      */
@@ -55,14 +55,13 @@ class ScriptureFragment : Fragment() {
             val response = RetrofitFactory.makePassageService().getPassage(scriptureReference)
             withContext(Dispatchers.Main) {
                 try {
-                    val passageTextView = view.findViewById<TextView>(R.id.tv_passage)
                     if (response.isSuccessful) {
-                        passageTextView.text = response.body()?.passage()
-                        passageTextView.setTextColor(Color.WHITE)
+                        binding.tvPassage.text = response.body()?.passage()
+                        binding.tvPassage.setTextColor(Color.WHITE)
                     } else {
                         @SuppressLint("SetTextI18n")
-                        passageTextView.text = "Error: ${response.code()}"
-                        passageTextView.setTextColor(Color.RED)
+                        binding.tvPassage.text = "Error: ${response.code()}"
+                        binding.tvPassage.setTextColor(Color.RED)
                     }
                     binding.viewFlipper.displayedChild = 1
                 } catch (e: HttpException) {
